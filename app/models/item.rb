@@ -1,3 +1,5 @@
 class Item < ApplicationRecord
-    has_and_belongs_to_many :cart
+    belongs_to :category
+    has_many :cart_items
+    has_many :carts, through: :cart_items
 end

@@ -1,11 +1,11 @@
 class CreateItems < ActiveRecord::Migration[6.1]
   def change
     create_table :items do |t|
+      t.integer :category_id
       t.string :name
-      t.string :imgUrl
+      t.string :img-url
       t.integer :price
-      t.integer :qty
-      t.integer :cart_id
+      t.integer :quantity
 
       t.timestamps
     end
