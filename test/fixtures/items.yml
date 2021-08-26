@@ -3,13 +3,13 @@
 one:
   category_id: 1
   name: MyString
-  img-url: MyString
+  img_url: MyString
   price: 1
   quantity: 1
 
 two:
   category_id: 1
   name: MyString
-  img-url: MyString
+  img_url: MyString
   price: 1
   quantity: 1
