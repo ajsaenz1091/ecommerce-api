@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: {message: "It's working"}
+    render json: @users
   end
 
   # GET /users/1
