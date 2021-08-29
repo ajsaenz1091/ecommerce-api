@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
   before_action :set_cart_item, only: [:show, :update, :destroy]
+  # before_action :set_quantity_param, only: [:create]
 
   # GET /cart_items
   def index
@@ -35,6 +36,7 @@ class CartItemsController < ApplicationController
 
   # DELETE /cart_items/1
   def destroy
+    
     @cart_item.destroy
   end
 
@@ -46,6 +48,10 @@ class CartItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cart_item_params
-      params.require(:cart_item).permit(:cart_id, :item_id)
+      params.require(:cart_item).permit(:cart_id, :item_id, :quantity)
     end
+
+    # def set_quantity_param
+    #   params[:quantity] = 1
+    # end
 end

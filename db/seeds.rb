@@ -293,7 +293,7 @@ hats = [
   puts 'Seeding cart_itmes...'
 
   70.times do
-    CartItem.create(cart_id: rand(1..5), item_id: rand(1..35))
+    CartItem.create(cart_id: rand(1..5), item_id: rand(1..35), quantity: 0)
   end
 
   puts 'Done...'

@@ -5,7 +5,7 @@ class CartsController < ApplicationController
   def index
     @carts = Cart.all
 
-    render json: @carts
+    render json: @carts, include: ['']
   end
 
   # GET /carts/1
