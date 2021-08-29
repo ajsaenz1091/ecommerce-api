@@ -36,7 +36,6 @@ class CartItemsController < ApplicationController
 
   # DELETE /cart_items/1
   def destroy
-    
     @cart_item.destroy
   end
 
