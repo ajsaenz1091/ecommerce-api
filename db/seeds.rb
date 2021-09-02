@@ -284,7 +284,7 @@ hats = [
 
   names = ['Alberto','Ethan','Max','Tyler']
 
-  names.each{|name| User.create(username: name)}
+  names.each{|name| User.create(username: name, email: "#{name.downcase}@test.com", password:"1234")}
 
   puts 'Seeding carts...'
 
