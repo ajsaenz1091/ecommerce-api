@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [ :update, :destroy]
 
   # GET /users
   def index
@@ -22,7 +21,7 @@ class UsersController < ApplicationController
   def create
     user = User.create!(user_params)
     cart = Cart.create(user_id:user.id)
-    session[:user_id] = user.id 
+    session[:user_id] = user.id
     render json: user, include: ['cart.cart_items'],  status: :created
   end
 
@@ -48,6 +47,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:username, :email, :password, :password_confirmation, :user)
+      params.permit(:username, :email, :password, :password_confirmation) 
     end
 end
