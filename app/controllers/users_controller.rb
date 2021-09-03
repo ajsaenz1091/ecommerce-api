@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [ :update, :destroy]
 
   # GET /users
   def index
@@ -10,14 +10,12 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-
-    render json: @user
-    # user = User.find_by(id: session[:user_id])
-    # if user 
-    #     render json: user
-    # else
-    #     render json: { errors: ["Not authorized"] }, status: :unauthorized
-    # end
+    user = User.find_by(id: session[:user_id])
+    if user 
+        render json: @user, include: ['cart.cart_items']
+    else
+        render json: { errors: ["Not authorized"] }, status: :unauthorized
+    end
   end
 
   # POST /users
@@ -25,7 +23,7 @@ class UsersController < ApplicationController
     user = User.create!(user_params)
     cart = Cart.create(user_id:user.id)
     session[:user_id] = user.id 
-    render json: user, include: ['cart'] , status: :created
+    render json: user, include: ['cart.cart_items'],  status: :created
   end
 
   # PATCH/PUT /users/1
@@ -50,6 +48,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:username, :email, :password, :password_confirmation)
+      params.permit(:username, :email, :password, :password_confirmation, :user)
     end
 end

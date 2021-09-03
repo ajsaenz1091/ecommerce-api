@@ -1,12 +1,23 @@
 class SessionsController < ApplicationController
     
-    # SIGNUP-LOGIN
+    # POST /login
     def create
-        
+        user = User.find_by(email: params[:email])
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            byebug
+            render json: { user: user }, status: :ok
+        else
+            render json: { errors: ['Invalid username and password combination'] }, status: :unauthorized
+        end
     end
 
-    # LOGOUT
+    # DELETE /logout 
     def destroy
-        
+        if session[:user_id]
+            session.destroy 
+        else
+            render json: { errors: ["You are not logged in"] }, status: :unauthorized
+        end
     end
 end
