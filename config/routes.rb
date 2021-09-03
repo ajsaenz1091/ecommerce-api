@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :carts
   resources :cart_items
-  resources :users
+  resources :users, only: [:create]
 
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create' 

@@ -7,11 +7,11 @@ class UsersController < ApplicationController
     render json: @users
   end
 
-  # GET /users/1
+  # GET /me
   def show
-    user = User.find_by(id: session[:user_id])
+    user = User.find(session[:user_id])
     if user 
-        render json: @user, include: ['cart.cart_items']
+        render json: user, include: ['cart.cart_items']
     else
         render json: { errors: ["Not authorized"] }, status: :unauthorized
     end
